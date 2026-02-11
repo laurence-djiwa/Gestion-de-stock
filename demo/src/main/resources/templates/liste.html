@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stock</title>
+</head>
+<body>
+
+<h2>Stock des articles</h2>
+
+<a href="/stock/creation">Ajouter un article</a>
+
+<table border="1">
+    <tr>
+        <th>Désignation</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="a : ${articles}">
+        <td th:text="${a.designation}"></td>
+        <td th:text="${a.description}"></td>
+        <td th:text="${a.prix}"></td>
+        <td th:text="${a.quantite}"></td>
+        <td>
+            <form th:action="@{/stock/{id}/supprimer(id=${a.id})}" method="post">
+                <button type="submit">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
